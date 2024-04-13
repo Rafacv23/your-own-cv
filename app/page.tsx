@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Home() {
   return (
     <main className="min-h-screen w-full gap-4 flex flex-col items-center justify-center">
-      <section className=" max-w-3xl flex flex-row gap-4 h-screen items-center justify-center">
+      <section className=" max-w-3xl mx-8 md:flex-row flex flex-col gap-4 h-screen items-center justify-center">
         <div className="flex flex-col items-start justify-center gap-4">
           <h1 className="text-3xl">
             <span className="text-violet-400 font-bold">Your Own CV</span> tu
@@ -33,7 +33,7 @@ export default function Home() {
         <h2 className="text-2xl text-violet-400 font-bold mb-8">
           ¿Por qué usar Your Own CV?
         </h2>
-        <ul className="flex gap-4 items-start justify-center">
+        <ul className="flex flex-col md:grid xl:grid-cols-3 md:grid-cols-2 gap-4 items-start justify-center">
           <li className="text-lg bg-gray-900 p-4 rounded shadow-lg">
             <h3 className="text-xl mb-4 font-semibold">⚙️ Personalizable</h3>
             <p className="mb-4 text-violet-200">fdasdfadadadadadasdadad</p>
