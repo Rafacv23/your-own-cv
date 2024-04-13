@@ -3,7 +3,7 @@ import React from "react"
 
 export default function header() {
   return (
-    <header className="flex gap-4 items-center justify-center py-4 border-b-gray-800 border-b fixed w-full z-10 backdrop-blur">
+    <header className="rounded-xl flex gap-4 items-center justify-center py-4 border-b-gray-800 border-b fixed w-full z-10 backdrop-blur">
       <Link
         href="/"
         title="Inicio"
