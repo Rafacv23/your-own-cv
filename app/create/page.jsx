@@ -16,7 +16,7 @@ export default function Create() {
       apellidos: formData.get("apellidos"),
       descripcion: formData.get("descripcion"),
       email: formData.get("email"),
-      avatar: formData.get("avatar"),
+      //avatar: formData.get("avatar"),
       telefono: formData.get("telefono"),
       pais: formData.get("pais"),
       web: formData.get("web"),
@@ -84,7 +84,7 @@ export default function Create() {
             placeholder="¿A qué te dedicas?"
           />
           <Input type="email" isRequired label="Email" name="email" />
-          <Input type="file" name="avatar" />
+          {/*<Input type="file" name="avatar" />*/}
           <Input type="number" label="Teléfono" name="telefono" isRequired />
           <Input
             type="text"
