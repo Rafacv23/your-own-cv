@@ -1,9 +1,9 @@
-"use client"
-import React, { useState } from "react"
+import React, { useState, ChangeEvent, FormEvent } from "react"
 import CvPreview from "../components/create/CvPreview"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Textarea } from "@nextui-org/react"
+
 export default function Create() {
   interface Estudio {
     titulo: string
@@ -23,12 +23,14 @@ export default function Create() {
     habilidad: string
   }
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<any>(null)
   const [trabajos, setTrabajos] = useState<Trabajo[]>([])
   const [estudios, setEstudios] = useState<Estudio[]>([])
   const [habilidades, setHabilidades] = useState<Habilidad[]>([])
 
-  async function createCv(formData: FormData) {
+  const createCv = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const formData = new FormData(e.target as HTMLFormElement)
     const rawFormData = {
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
@@ -42,9 +44,6 @@ export default function Create() {
       estudios,
       habilidades,
     }
-
-    console.log(rawFormData)
-
     setData(rawFormData)
     // mutate data
     // revalidate cache
@@ -68,21 +67,30 @@ export default function Create() {
     setHabilidades([...habilidades, { habilidad: "" }])
   }
 
-  const handleTrabajoChange = (index, e) => {
+  const handleTrabajoChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
     const newTrabajos = [...trabajos]
-    newTrabajos[index][name] = value
+    newTrabajos[index][name as keyof Trabajo] = value
     setTrabajos(newTrabajos)
   }
 
-  const handleEstudioChange = (index, e) => {
+  const handleEstudioChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
     const newEstudios = [...estudios]
-    newEstudios[index][name] = value
+    newEstudios[index][name as keyof Estudio] = value
     setEstudios(newEstudios)
   }
 
-  const handleHabilidadChange = (index, e) => {
+  const handleHabilidadChange = (
+    index: number,
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const { value } = e.target
     const newHabilidades = [...habilidades]
     newHabilidades[index].habilidad = value
@@ -92,7 +100,7 @@ export default function Create() {
   return (
     <main className="min-h-screen w-full gap-4 flex flex-col sm:flex-row items-center justify-center ">
       <aside>
-        <form className="flex flex-col gap-4 mt-24 mb-24" action={createCv}>
+        <form className="flex flex-col gap-4 mt-24 mb-24" onSubmit={createCv}>
           <h2 className="text-2xl font-bold text-violet-400">Presentación</h2>
           <Input type="text" isRequired min={2} name="nombre" label="Nombre" />
           <Input type="text" label="Apellidos" min={2} name="apellidos" />
@@ -220,10 +228,9 @@ export default function Create() {
           >
             Añadir habilidad
           </Button>
-          <button></button>
-          <button className=" bg-green-600 rounded p-2 text-black">
+          <Button color="primary" type="submit">
             Guardar
-          </button>
+          </Button>
         </form>
       </aside>
       {data ? <CvPreview data={data} /> : null}
