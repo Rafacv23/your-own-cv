@@ -30,7 +30,7 @@ export default function Content() {
           width={200}
         />
       </section>
-      <section className=" h-screen max-w-3xl">
+      <section className=" md:h-screen max-w-3xl mb-24">
         <h2 className="text-2xl text-violet-400 font-bold mb-8">
           ¿Por qué usar Your Own CV?
         </h2>
