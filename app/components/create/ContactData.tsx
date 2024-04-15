@@ -14,7 +14,7 @@ interface ContactDataProps {
   }
 }
 
-export const ContactData: React.FC<ContactDataProps> = ({ data }) => {
+export default function ContactData({ data }: any) {
   return (
     <aside className="flex flex-col gap-4">
       <h2 className="text-2xl text-violet-400 font-semibold mb-4 flex gap-4 items-center">
