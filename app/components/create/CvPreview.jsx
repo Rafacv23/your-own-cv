@@ -5,6 +5,7 @@ import TrabajosList from "./TrabajosList"
 import EstudiosList from "./EstudiosList"
 import HabilidadesList from "./HabilidadesList"
 import ContactData from "./ContactData"
+
 export default function CvPreview({ data }) {
   const contentRef = useRef(null)
 
