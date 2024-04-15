@@ -1,16 +1,32 @@
 "use client"
 import React, { useState } from "react"
 import CvPreview from "../components/create/CvPreview"
-
+import { Button } from "@nextui-org/button"
+import { Input } from "@nextui-org/input"
+import { Textarea } from "@nextui-org/react"
 export default function Create() {
+  interface Estudio {
+    titulo: string
+    escuela: string
+    fecha: string
+    descripcion: string
+  }
+
+  interface Trabajo {
+    trabajo: string
+    empresa: string
+    fecha: string
+    descripcion: string
+  }
+
+  interface Habilidad {
+    habilidad: string
+  }
+
   const [data, setData] = useState(null)
-  const [trabajos, setTrabajos] = useState([
-    { trabajo: "", empresa: "", fecha: "", descripcion: "" },
-  ])
-  const [estudios, setEstudios] = useState([
-    { titulo: "", escuela: "", fecha: "", descripcion: "" },
-  ])
-  const [habilidades, setHabilidades] = useState([{ habilidad: "" }])
+  const [trabajos, setTrabajos] = useState<Trabajo[]>([])
+  const [estudios, setEstudios] = useState<Estudio[]>([])
+  const [habilidades, setHabilidades] = useState<Habilidad[]>([])
 
   async function createCv(formData: FormData) {
     const rawFormData = {
@@ -77,150 +93,137 @@ export default function Create() {
     <main className="min-h-screen w-full gap-4 flex flex-col sm:flex-row items-center justify-center ">
       <aside>
         <form className="flex flex-col gap-4 mt-24 mb-24" action={createCv}>
-          <h2>Presentación</h2>
-          <input
-            className="text-black"
-            type="text"
-            placeholder="Nombre"
-            required
-            min={2}
-            name="nombre"
-          />
-          <input
-            className="text-black"
-            type="text"
-            placeholder="Apellidos"
-            required
-            min={2}
-            name="apellidos"
-          />
-          <textarea
-            className="text-black"
+          <h2 className="text-2xl font-bold text-violet-400">Presentación</h2>
+          <Input type="text" isRequired min={2} name="nombre" label="Nombre" />
+          <Input type="text" label="Apellidos" min={2} name="apellidos" />
+          <Textarea
             name="descripcion"
-            placeholder="Descripción"
+            label="Descripción"
+            placeholder="¿A qué te dedicas?"
           />
-          <input
-            className="text-black"
-            type="email"
-            placeholder="Email"
-            name="email"
-          />
-          <input className="text-black" type="file" name="avatar" />
-          <input
-            className="text-black"
-            type="number"
-            placeholder="Teléfono"
-            name="telefono"
-          />
-          <input
-            className="text-black"
+          <Input type="email" isRequired label="Email" name="email" />
+          <Input type="file" name="avatar" />
+          <Input type="number" label="Teléfono" name="telefono" isRequired />
+          <Input
             type="text"
-            placeholder="País de residencia"
+            label="País de residencia"
             name="pais"
+            isRequired
           />
-          <input
-            className="text-black"
-            type="text"
-            placeholder="Página web"
-            name="web"
-          />
-          <h2>Trabajos</h2>
+          <Input type="text" label="Página web" name="web" />
+          <h2 className="text-2xl font-bold text-violet-400">Trabajos</h2>
           {trabajos.map((trabajo, index) => (
             <div key={index} className="flex flex-col gap-4">
-              <input
+              <Input
                 type="text"
-                className="text-black"
-                placeholder="Puesto de trabajo"
+                label="Puesto de trabajo"
                 name="trabajo"
+                isRequired
                 value={trabajo.trabajo}
                 onChange={(e) => handleTrabajoChange(index, e)}
               />
-              <input
+              <Input
                 type="text"
-                className="text-black"
-                placeholder="Empresa"
+                label="Empresa"
                 name="empresa"
+                isRequired
                 value={trabajo.empresa}
                 onChange={(e) => handleTrabajoChange(index, e)}
               />
-              <input
-                type="date"
-                placeholder="Fecha de entrada"
-                name="fecha"
+              <Input
                 className="text-black"
+                type="date"
+                label="Fecha de entrada"
+                name="fecha"
                 value={trabajo.fecha}
                 onChange={(e) => handleTrabajoChange(index, e)}
               />
-              <textarea
+              <Textarea
                 name="descripcion"
-                placeholder="Qué has aprendido?"
-                className="text-black"
+                placeholder="¿Qué tareas haces en el trabajo?"
+                label="Descripción"
                 value={trabajo.descripcion}
                 onChange={(e) => handleTrabajoChange(index, e)}
               />
-              {/* Otros campos de trabajo */}
             </div>
           ))}
-          <button type="button" onClick={handleAddTrabajo}>
+          <Button
+            color="secondary"
+            variant="ghost"
+            type="button"
+            onClick={handleAddTrabajo}
+          >
             Añadir trabajo
-          </button>
-          <h2>Estudios</h2>
+          </Button>
+          <h2 className="text-2xl font-bold text-violet-400">Estudios</h2>
           {estudios.map((estudio, index) => (
             <div key={index} className="flex flex-col gap-4">
-              <input
+              <Input
                 type="text"
-                className="text-black"
-                placeholder="Titulación"
-                name="trabajo"
+                label="Titulación"
+                name="titulo"
+                isRequired
                 value={estudio.titulo}
                 onChange={(e) => handleEstudioChange(index, e)}
               />
-              <input
+              <Input
                 type="text"
-                className="text-black"
-                placeholder="Centro de estudios"
-                name="empresa"
+                label="Centro de estudios"
+                name="escuela"
+                isRequired
                 value={estudio.escuela}
                 onChange={(e) => handleEstudioChange(index, e)}
               />
-              <input
+              <Input
                 type="date"
-                placeholder="Fecha de entrada"
+                label="Fecha de entrada"
                 name="fecha"
                 className="text-black"
                 value={estudio.fecha}
                 onChange={(e) => handleEstudioChange(index, e)}
               />
-              <textarea
+              <Textarea
                 name="descripcion"
-                placeholder="Qué has aprendido?"
-                className="text-black"
+                placeholder="¿Qué aprendiste?"
+                label="Descripción"
                 value={estudio.descripcion}
                 onChange={(e) => handleEstudioChange(index, e)}
               />
-              {/* Otros campos de trabajo */}
             </div>
           ))}
-          <button type="button" onClick={handleAddEstudio}>
+          <Button
+            color="secondary"
+            variant="ghost"
+            type="button"
+            onClick={handleAddEstudio}
+          >
             Añadir estudios
-          </button>
-          <h2>Habilidades</h2>
+          </Button>
+          <h2 className="text-2xl font-bold text-violet-400">Habilidades</h2>
           {habilidades.map((habilidad, index) => (
             <div key={index} className="flex flex-col gap-4">
-              <input
-                className="text-black"
+              <Input
                 type="text"
-                placeholder="Habilidad"
+                label="Habilidad"
                 name="habilidad"
+                isRequired
                 value={habilidad.habilidad}
                 onChange={(e) => handleHabilidadChange(index, e)}
               />
             </div>
           ))}
-          <button type="button" onClick={handleAddHabilidad}>
+          <Button
+            color="secondary"
+            variant="ghost"
+            type="button"
+            onClick={handleAddHabilidad}
+          >
             Añadir habilidad
+          </Button>
+          <button></button>
+          <button className=" bg-green-600 rounded p-2 text-black">
+            Guardar
           </button>
-          <button>Guardar</button>
         </form>
       </aside>
       {data ? <CvPreview data={data} /> : null}
