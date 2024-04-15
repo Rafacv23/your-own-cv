@@ -4,11 +4,18 @@ import CvPreview from "../components/create/CvPreview"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Textarea } from "@nextui-org/react"
+import dynamic from "next/dynamic"
+
 export default function Create() {
   const [data, setData] = useState(null)
   const [trabajos, setTrabajos] = useState([])
   const [estudios, setEstudios] = useState([])
   const [habilidades, setHabilidades] = useState([])
+
+  const PreviewComponent = dynamic(
+    () => import("../components/create/CvPreview"),
+    { ssr: false }
+  )
 
   async function createCv(formData) {
     const rawFormData = {
@@ -208,7 +215,7 @@ export default function Create() {
           </button>
         </form>
       </aside>
-      {data ? <CvPreview data={data} /> : null}
+      {data ? <PreviewComponent data={data} /> : null}
     </main>
   )
 }
