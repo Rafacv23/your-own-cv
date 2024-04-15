@@ -1,4 +1,3 @@
-"use client"
 import React from "react"
 import { useRef } from "react"
 import html2pdf from "html2pdf.js"
