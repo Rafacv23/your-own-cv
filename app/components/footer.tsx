@@ -34,6 +34,7 @@ export default function footer() {
               <Link
                 href="https://github.com/Rafacv23/your-own-cv"
                 title="Repositorio de Github"
+                target="blank"
               >
                 Github
               </Link>
@@ -42,6 +43,7 @@ export default function footer() {
               <Link
                 href="https://www.linkedin.com/in/rafa-canosa-vallejo-6328a5194/"
                 title="Rafa Canosa Linkedin"
+                target="blank"
               >
                 Linkedin
               </Link>
@@ -50,6 +52,7 @@ export default function footer() {
               <Link
                 href="https://rafa-canosa-portfolio.vercel.app/"
                 title="Rafa Canosa Portfolio"
+                target="blank"
               >
                 Portfolio
               </Link>
