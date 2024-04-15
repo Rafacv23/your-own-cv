@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, ChangeEvent, FormEvent } from "react"
 import CvPreview from "../components/create/CvPreview"
 import { Button } from "@nextui-org/button"
