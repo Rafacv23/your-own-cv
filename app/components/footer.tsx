@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { Divider } from "@nextui-org/divider"
-import { AiFillGithub, AiFillLinkedin } from "react-icons/ai"
+import { AiFillGithub, AiFillLinkedin, AiFillHeart } from "react-icons/ai"
 import { MdOutlineWork } from "react-icons/md"
 
 export default function footer() {
@@ -80,7 +80,9 @@ export default function footer() {
           </ul>
         </section>
       </div>
-      <h5>Creado con ❤️ por Rafa Canosa</h5>
+      <h5 className="flex items-center gap-2">
+        Creado con <AiFillHeart /> por Rafa Canosa
+      </h5>
     </footer>
   )
 }
