@@ -4,7 +4,7 @@ import TrabajosList from "./TrabajosList"
 import EstudiosList from "./EstudiosList"
 import HabilidadesList from "./HabilidadesList"
 import ContactData from "./ContactData"
-import { CvAndContactData, CvData } from "@/app/utils/definitions"
+import { CvAndContactData } from "@/app/utils/definitions"
 import { convertToPdf } from "@/app/utils/convertToPdf"
 
 export default function CvPreview({ data }: { data: CvAndContactData }) {
