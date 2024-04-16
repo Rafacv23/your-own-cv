@@ -1,16 +1,32 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import CvPreview from "../components/create/CvPreview"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Textarea } from "@nextui-org/react"
 import { Trabajo, Estudio, Habilidad } from "../utils/definitions"
+import {
+  handleAddEstudio,
+  handleAddHabilidad,
+  handleAddTrabajo,
+} from "../utils/addItem"
 
 export default function Create() {
   const [data, setData] = useState<FormData | null>(null)
   const [trabajos, setTrabajos] = useState<Trabajo[]>([])
   const [estudios, setEstudios] = useState<Estudio[]>([])
   const [habilidades, setHabilidades] = useState<Habilidad[]>([])
+
+  useEffect(() => {
+    const storedData = localStorage.getItem("cv")
+    if (storedData) {
+      const parsedData = JSON.parse(storedData)
+      setData(parsedData)
+      setTrabajos(parsedData.trabajos || [])
+      setEstudios(parsedData.estudios || [])
+      setHabilidades(parsedData.habilidades || [])
+    }
+  }, [])
 
   async function createCv(formData: FormData) {
     const rawFormData = {
@@ -27,27 +43,11 @@ export default function Create() {
       habilidades,
     }
 
+    localStorage.setItem("cv", JSON.stringify(rawFormData))
+
     setData(rawFormData)
     // mutate data
     // revalidate cache
-  }
-
-  const handleAddTrabajo = () => {
-    setTrabajos([
-      ...trabajos,
-      { trabajo: "", empresa: "", fecha: "", descripcion: "" },
-    ])
-  }
-
-  const handleAddEstudio = () => {
-    setEstudios([
-      ...estudios,
-      { titulo: "", escuela: "", fecha: "", descripcion: "" },
-    ])
-  }
-
-  const handleAddHabilidad = () => {
-    setHabilidades([...habilidades, { habilidad: "" }])
   }
 
   const handleTrabajoChange = (
@@ -164,7 +164,7 @@ export default function Create() {
             color="secondary"
             variant="ghost"
             type="button"
-            onClick={handleAddTrabajo}
+            onClick={() => handleAddTrabajo(setTrabajos, trabajos)}
           >
             Añadir trabajo
           </Button>
@@ -208,7 +208,7 @@ export default function Create() {
             color="secondary"
             variant="ghost"
             type="button"
-            onClick={handleAddEstudio}
+            onClick={() => handleAddEstudio(setEstudios, estudios)}
           >
             Añadir estudios
           </Button>
@@ -229,7 +229,7 @@ export default function Create() {
             color="secondary"
             variant="ghost"
             type="button"
-            onClick={handleAddHabilidad}
+            onClick={() => handleAddHabilidad(setHabilidades, habilidades)}
           >
             Añadir habilidad
           </Button>
