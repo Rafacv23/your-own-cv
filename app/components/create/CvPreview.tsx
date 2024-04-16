@@ -1,17 +1,21 @@
 import React from "react"
 import { useRef } from "react"
+import { Button } from "@nextui-org/react"
 import TrabajosList from "./TrabajosList"
 import EstudiosList from "./EstudiosList"
 import HabilidadesList from "./HabilidadesList"
 import ContactData from "./ContactData"
 import { CvAndContactData } from "@/app/utils/definitions"
 import { convertToPdf } from "@/app/utils/convertToPdf"
+import DeleteAlert from "./form/DeleteAlert"
+import { BsDownload } from "react-icons/bs"
 
 export default function CvPreview({ data }: { data: CvAndContactData }) {
   const contentRef = useRef(null)
 
   return (
     <div className="flex flex-col gap-4">
+      <h2 className="text-2xl font-bold text-violet-400">Vista Previa</h2>
       <article
         className="flex flex-col gap-4 text-white bg-black p-8 h-full"
         ref={contentRef}
@@ -35,12 +39,16 @@ export default function CvPreview({ data }: { data: CvAndContactData }) {
           </main>
         </div>
       </article>
-      <button
-        className=" bg-violet-400 rounded p-4 font-bold text-black"
-        onClick={() => convertToPdf({ ref: contentRef })}
-      >
-        Descargar
-      </button>
+      <footer className="flex gap-4 items-center justify-center">
+        <Button
+          color="secondary"
+          startContent={<BsDownload />}
+          onClick={() => convertToPdf({ ref: contentRef })}
+        >
+          Descargar
+        </Button>
+        <DeleteAlert />
+      </footer>
     </div>
   )
 }
