@@ -4,20 +4,15 @@ import CvPreview from "../components/create/CvPreview"
 import { Button } from "@nextui-org/button"
 import { Input } from "@nextui-org/input"
 import { Textarea } from "@nextui-org/react"
-import dynamic from "next/dynamic"
+import { Trabajo, Estudio, Habilidad } from "../utils/definitions"
 
 export default function Create() {
-  const [data, setData] = useState(null)
-  const [trabajos, setTrabajos] = useState([])
-  const [estudios, setEstudios] = useState([])
-  const [habilidades, setHabilidades] = useState([])
+  const [data, setData] = useState<FormData | null>(null)
+  const [trabajos, setTrabajos] = useState<Trabajo[]>([])
+  const [estudios, setEstudios] = useState<Estudio[]>([])
+  const [habilidades, setHabilidades] = useState<Habilidad[]>([])
 
-  const PreviewComponent = dynamic(
-    () => import("../components/create/CvPreview"),
-    { ssr: false }
-  )
-
-  async function createCv(formData) {
+  async function createCv(formData: FormData) {
     const rawFormData = {
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),
@@ -31,8 +26,6 @@ export default function Create() {
       estudios,
       habilidades,
     }
-
-    console.log(rawFormData)
 
     setData(rawFormData)
     // mutate data
@@ -57,21 +50,52 @@ export default function Create() {
     setHabilidades([...habilidades, { habilidad: "" }])
   }
 
-  const handleTrabajoChange = (index, e) => {
+  const handleTrabajoChange = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
     const newTrabajos = [...trabajos]
-    newTrabajos[index][name] = value
-    setTrabajos(newTrabajos)
+
+    // Verifica si el nombre es una de las claves válidas de Trabajo
+    if (
+      name === "trabajo" ||
+      name === "empresa" ||
+      name === "fecha" ||
+      name === "descripcion"
+    ) {
+      newTrabajos[index][name as keyof Trabajo] = value
+      setTrabajos(newTrabajos)
+    } else {
+      console.error(`'${name}' no es una propiedad válida para Trabajo`)
+    }
   }
 
-  const handleEstudioChange = (index, e) => {
+  const handleEstudioChange = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
     const newEstudios = [...estudios]
-    newEstudios[index][name] = value
-    setEstudios(newEstudios)
+
+    // Verifica si el nombre es una de las claves válidas de Estudio
+    if (
+      name === "titulo" ||
+      name === "escuela" ||
+      name === "fecha" ||
+      name === "descripcion"
+    ) {
+      newEstudios[index][name as keyof Estudio] = value
+      setEstudios(newEstudios)
+    } else {
+      console.error(`'${name}' no es una propiedad válida para Estudio`)
+    }
   }
 
-  const handleHabilidadChange = (index, e) => {
+  const handleHabilidadChange = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value } = e.target
     const newHabilidades = [...habilidades]
     newHabilidades[index].habilidad = value
@@ -215,7 +239,7 @@ export default function Create() {
           </button>
         </form>
       </aside>
-      {data ? <PreviewComponent data={data} /> : null}
+      {data ? <CvPreview data={data} /> : null}
     </main>
   )
 }
