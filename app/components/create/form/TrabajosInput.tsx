@@ -17,7 +17,7 @@ export default function TrabajosInput({
   setTrabajos: Dispatch<SetStateAction<Trabajo[]>>
 }) {
   return (
-    <section>
+    <section className="flex flex-col gap-4 items-center">
       <h2 className="text-2xl font-bold text-violet-400">Trabajos</h2>
       {trabajos.map((trabajo, index) => (
         <div key={index} className="flex flex-col gap-4">
