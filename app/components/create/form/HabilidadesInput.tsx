@@ -16,7 +16,7 @@ export default function HabilidadesInput({
   setHabilidades: Dispatch<SetStateAction<Habilidad[]>>
 }) {
   return (
-    <section>
+    <section className="flex flex-col gap-4 items-center">
       <h2 className="text-2xl font-bold text-violet-400">Habilidades</h2>
       {habilidades.map((habilidad, index) => (
         <div key={index} className="flex flex-col gap-4">
