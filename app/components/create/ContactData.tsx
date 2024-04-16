@@ -3,18 +3,9 @@ import { BsFillPhoneVibrateFill } from "react-icons/bs"
 import { MdMarkEmailRead } from "react-icons/md"
 import { CgWebsite } from "react-icons/cg"
 import { BiWorld, BiSolidContact } from "react-icons/bi"
+import { ContactDataProps } from "@/app/utils/definitions"
 
-// Define interface for data prop
-interface ContactDataProps {
-  data: {
-    email: string
-    telefono: string
-    web: string
-    pais: string
-  }
-}
-
-export default function ContactData({ data }: any) {
+export default function ContactData({ data }: { data: ContactDataProps }) {
   return (
     <aside className="flex flex-col gap-4">
       <h2 className="text-2xl text-violet-400 font-semibold mb-4 flex gap-4 items-center">
