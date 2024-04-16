@@ -1,6 +1,7 @@
 import React from "react"
 import { MdWork } from "react-icons/md"
 import { Trabajo, Trabajos } from "@/app/utils/definitions"
+import { BsCalendar2DateFill } from "react-icons/bs"
 
 export default function TrabajosList({ trabajos }: Trabajos) {
   return (
@@ -14,7 +15,9 @@ export default function TrabajosList({ trabajos }: Trabajos) {
             <h3 className=" text-xl">
               {trabajo.trabajo} | {trabajo.empresa}
             </h3>
-            <h4>{trabajo.fecha}</h4>
+            <h4 className="flex gap-2 items-center">
+              <BsCalendar2DateFill /> {trabajo.fecha}
+            </h4>
             <p>{trabajo.descripcion}</p>
           </li>
         ))}
