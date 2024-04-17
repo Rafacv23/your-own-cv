@@ -1,0 +1,36 @@
+---
+import { Link } from "@nextui-org/react"
+---
+
+    <header class="rounded-xl flex gap-4 items-center justify-center py-4 border-b-gray-800 border-b fixed w-full z-10 backdrop-blur">
+      <Link
+        href="/"
+        title="Inicio"
+        isBlock
+        color="secondary"
+      >
+        Inicio
+      </Link>
+      <Link
+        href="/create"
+        title="Crear"
+        isBlock
+        color="secondary"
+      >
+        Crear
+      </Link>
+      <Link
+        href="/example"
+        title="Ejemplo"
+        isBlock
+        color="secondary"
+      >
+        Ejemplo
+      </Link>
+    </header>
+
+    <style>
+      a{
+        color: white;
+      }
+    </style>
