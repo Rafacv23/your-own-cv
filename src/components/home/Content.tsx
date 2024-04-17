@@ -10,7 +10,7 @@ import { MdMoneyOff, MdRocketLaunch } from "react-icons/md"
 
 export default function Content() {
   return (
-    <>
+    <div className="flex flex-col items-center justify-center">
       <section
         id="start"
         className=" max-w-3xl mx-8 md:flex-row flex flex-col gap-4 h-screen items-center justify-center"
@@ -106,9 +106,16 @@ export default function Content() {
           </li>
         </ul>
       </section>
-      <Link href="#start" title="Volver al inicio" className="mb-8">
-        <Button startContent={<AiOutlineArrowUp />}>Volver</Button>
+      <Link href="#start" title="Volver al inicio" className="mb-8 ">
+        <Button
+          color="default"
+          variant="bordered"
+          startContent={<AiOutlineArrowUp />}
+          className="text-white"
+        >
+          Volver
+        </Button>
       </Link>
-    </>
+    </div>
   )
 }
