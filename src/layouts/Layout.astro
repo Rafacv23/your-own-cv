@@ -2,29 +2,28 @@
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import SEO from '../components/SEO.astro';
 
 interface Props {
-	title: string;
+	title: string
+	description?: string
+	canonical?: string
+	image?: string
 }
 
-const { title } = Astro.props;
+const { title, description, canonical, image } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon-1.avif" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<SEO title={title} description={description} canonical={canonical} image={image} />
+		<ViewTransitions/>
 	</head>
 	<body>
 		<Header/>
 		<slot />
 		<Footer/>
-		<ViewTransitions/>
 	</body>
 </html>
 <style is:global>
