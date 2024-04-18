@@ -49,8 +49,7 @@ export default function Content() {
         <img
           className="rounded h-auto"
           src="/home-1.avif"
-          alt="dada"
-          title=""
+          alt="Your own cv imagen de presentación 1"
           width={200}
         />
       </section>
@@ -58,7 +57,7 @@ export default function Content() {
         <h2 className="text-2xl text-violet-400 font-bold mb-8 mx-16 md:mx-0">
           ¿Por qué usar Your Own CV?
         </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-16 md:mx-0">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-16 md:mx-0 items=start">
           <li className="flex flex-col bg-gray-900 p-4 rounded shadow-lg">
             <h3 className="text-xl mb-4 font-semibold flex gap-2 items-center">
               <AiFillSetting /> Personalizable
@@ -69,7 +68,7 @@ export default function Content() {
             </p>
             <img
               src="/home-2.avif"
-              alt=""
+              alt="Your own cv imagen de presentación 2"
               loading="lazy"
               className="rounded h-48 w-full object-cover"
             />
@@ -84,7 +83,7 @@ export default function Content() {
             </p>
             <img
               src="/home-5.avif"
-              alt=""
+              alt="Your own cv imagen de presentación 3"
               loading="lazy"
               className="rounded h-48 w-full object-cover"
             />
@@ -99,7 +98,7 @@ export default function Content() {
             </p>
             <img
               src="/home-4.avif"
-              alt=""
+              alt="Your own cv imagen de presentación 4"
               loading="lazy"
               className="rounded h-48 w-full object-cover"
             />
