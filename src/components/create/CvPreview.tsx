@@ -1,4 +1,3 @@
-import React from "react"
 import { useRef } from "react"
 import { Button } from "@nextui-org/react"
 import TrabajosList from "./TrabajosList"

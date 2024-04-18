@@ -1,4 +1,3 @@
-import React from "react"
 import { PiStudentFill } from "react-icons/pi"
 import type { Estudio, Estudios } from "../../utils/definitions.ts"
 import { BsCalendar2DateFill } from "react-icons/bs"

@@ -1,4 +1,3 @@
-import React from "react"
 import { GiSkills } from "react-icons/gi"
 import type { Habilidades, Habilidad } from "../../utils/definitions.ts"
 

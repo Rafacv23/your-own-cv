@@ -1,4 +1,3 @@
-import React from "react"
 import { BsFillPhoneVibrateFill } from "react-icons/bs"
 import { MdMarkEmailRead } from "react-icons/md"
 import { CgWebsite } from "react-icons/cg"

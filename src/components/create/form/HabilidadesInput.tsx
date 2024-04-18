@@ -1,5 +1,4 @@
 import type { Habilidad } from "../../../utils/definitions.ts"
-import React from "react"
 import type { SetStateAction, Dispatch } from "react"
 import { Input } from "@nextui-org/input"
 import { Button } from "@nextui-org/button"

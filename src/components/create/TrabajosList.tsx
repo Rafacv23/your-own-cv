@@ -1,4 +1,3 @@
-import React from "react"
 import { MdWork } from "react-icons/md"
 import type { Trabajo, Trabajos } from "../../utils/definitions.ts"
 import { BsCalendar2DateFill } from "react-icons/bs"

@@ -1,4 +1,3 @@
-import React from "react"
 import { Input } from "@nextui-org/input"
 import { Textarea } from "@nextui-org/react"
 
