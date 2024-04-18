@@ -7,7 +7,7 @@ import PresentacionInput from "./form/PresentacionInput"
 import { Button } from "@nextui-org/react"
 import { GrAdd } from "react-icons/gr"
 import Skeleton from "./Skeleton"
-
+import { zodSchema } from "../../utils/zodSchema.js"
 export default function Create() {
   const [data, setData] = useState(null)
   const [trabajos, setTrabajos] = useState([])
@@ -40,11 +40,19 @@ export default function Create() {
       habilidades,
     }
 
-    localStorage.setItem("cv", JSON.stringify(rawFormData))
+    try {
+      // Validar los datos del formulario con el esquema de Zod
+      zodSchema.parse(rawFormData)
 
-    setData(rawFormData)
-    // mutate data
-    // revalidate cache
+      localStorage.setItem("cv", JSON.stringify(rawFormData))
+      setData(rawFormData)
+      // mutate data
+      // revalidate cache
+    } catch (error) {
+      // Si hay errores de validación, manejarlos aquí
+      console.error("Error de validación:")
+      // Aquí puedes mostrar un mensaje de error al usuario o realizar otras acciones
+    }
   }
 
   return (
