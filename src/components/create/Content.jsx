@@ -1,24 +1,18 @@
 import { useState, useEffect } from "react"
-import CvPreview from "../../components/create/CvPreview"
-import type {
-  Trabajo,
-  Estudio,
-  Habilidad,
-  CvAndContactData,
-} from "../../utils/definitions"
-import TrabajosInput from "../../components/create/form/TrabajosInput"
-import EstudiosInput from "../../components/create/form/EstudiosInput"
-import HabilidadesInput from "../../components/create/form/HabilidadesInput"
-import PresentacionInput from "../../components/create/form/PresentacionInput"
+import CvPreview from "./CvPreview"
+import TrabajosInput from "./form/TrabajosInput"
+import EstudiosInput from "./form/EstudiosInput"
+import HabilidadesInput from "./form/HabilidadesInput"
+import PresentacionInput from "./form/PresentacionInput"
 import { Button } from "@nextui-org/react"
 import { GrAdd } from "react-icons/gr"
-import Skeleton from "../../components/create/Skeleton"
+import Skeleton from "./Skeleton"
 
 export default function Create() {
-  const [data, setData] = useState<CvAndContactData | null>(null)
-  const [trabajos, setTrabajos] = useState<Trabajo[]>([])
-  const [estudios, setEstudios] = useState<Estudio[]>([])
-  const [habilidades, setHabilidades] = useState<Habilidad[]>([])
+  const [data, setData] = useState(null)
+  const [trabajos, setTrabajos] = useState([])
+  const [estudios, setEstudios] = useState([])
+  const [habilidades, setHabilidades] = useState([])
 
   useEffect(() => {
     const storedData = localStorage.getItem("cv")
@@ -31,7 +25,7 @@ export default function Create() {
     }
   }, [])
 
-  async function createCv(formData: FormData) {
+  async function createCv(formData) {
     const rawFormData = {
       nombre: formData.get("nombre"),
       apellidos: formData.get("apellidos"),

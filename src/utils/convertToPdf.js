@@ -1,5 +1,4 @@
 import html2pdf from "html2pdf.js"
-import type { ConvertToPdfParams } from "./definitions"
 const options = {
   filename: "your-own-cv.pdf",
   margin: 0.5,
@@ -8,7 +7,7 @@ const options = {
   jsPDF: { unit: "in", format: "A4", orientation: "portrait" },
 }
 
-export const convertToPdf = ({ ref }: ConvertToPdfParams) => {
+export const convertToPdf = ({ ref }) => {
   const content = ref.current
 
   html2pdf().set(options).from(content).save()
