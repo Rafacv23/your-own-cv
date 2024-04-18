@@ -13,7 +13,7 @@ export default function CvPreview({ data }: { data: CvAndContactData }) {
   const contentRef = useRef(null)
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 mb-24 sm:mb-0">
       <h2 className="text-2xl font-bold text-violet-400">Vista Previa</h2>
       <article
         className="flex flex-col gap-4 text-white bg-black p-8 h-full"
