@@ -1,0 +1,39 @@
+---
+import {SITE_URL, SITE_DEFAULT_DESCRIPTION} from '../utils/constants.ts'
+const {title, description, canonical, image} = Astro.props
+
+const metaDescription = description ? description : SITE_DEFAULT_DESCRIPTION
+
+const canonicalURL = canonical
+	? new URL(canonical, Astro.site)
+	: new URL(Astro.url.pathname, Astro.site)
+
+const defaultImage = './wallpaper.avif' //Imagen por defecto de la web
+
+const img = image ? image : defaultImage
+---
+
+<title>{title}</title>
+<meta charset="UTF-8" />
+<meta name="description" content={metaDescription} />
+<link rel="canonical" href={canonicalURL} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="./favicon-1.avif" />
+<link rel='sitemap' href='/sitemap-index.xml'/>
+<meta name="generator" content={Astro.generator} />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content={canonicalURL}>
+	<meta property="og:type" content="website">
+	<meta property="og:title" content={title}>
+	<meta property="og:description" content={metaDescription}>
+	<meta property="og:image" content={img}>
+	
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content={SITE_URL}>
+	<meta property="twitter:url" content={canonicalURL}>
+	<meta name="twitter:title" content={title}>
+	<meta name="twitter:description" content={metaDescription}>
+	<meta name="twitter:image" content={img}>
+
