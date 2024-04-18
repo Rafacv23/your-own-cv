@@ -7,13 +7,28 @@ export default function PresentacionInput() {
       <h2 className="text-2xl font-bold text-violet-400">Presentación</h2>
       <div className="flex flex-col gap-4">
         <Input type="text" isRequired min={2} name="nombre" label="Nombre" />
-        <Input type="text" label="Apellidos" min={2} name="apellidos" />
+        <Input
+          type="text"
+          isRequired
+          label="Apellidos"
+          min={2}
+          name="apellidos"
+          isInvalid={false}
+          errorMessage="Los apellidos no son válidos, no está permitido introducir números."
+        />
         <Textarea
           name="descripcion"
           label="Descripción"
           placeholder="¿A qué te dedicas?"
         />
-        <Input type="email" isRequired label="Email" name="email" />
+        <Input
+          type="email"
+          isRequired
+          label="Email"
+          name="email"
+          isInvalid={false}
+          errorMessage="El email no es correcto. Usa este formato: example@example.com"
+        />
         {/*<Input type="file" name="avatar" />*/}
         <Input type="number" label="Teléfono" name="telefono" isRequired />
         <Input type="text" label="País de residencia" name="pais" isRequired />
