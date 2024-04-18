@@ -5,7 +5,7 @@ import EstudiosList from "./EstudiosList"
 import HabilidadesList from "./HabilidadesList"
 import ContactData from "./ContactData"
 import type { CvAndContactData } from "../../utils/definitions.ts"
-import { convertToPdf } from "../../utils/convertToPdf.ts"
+import { convertToPdf } from "../../utils/convertToPdf.js"
 import DeleteAlert from "./form/DeleteAlert"
 import { BsDownload } from "react-icons/bs"
 
