@@ -6,7 +6,6 @@ import HabilidadesInput from "./form/HabilidadesInput"
 import PresentacionInput from "./form/PresentacionInput"
 import { Button } from "@nextui-org/react"
 import { GrAdd } from "react-icons/gr"
-import Skeleton from "./Skeleton"
 import { zodSchema } from "../../utils/zodSchema.js"
 export default function Create() {
   const [data, setData] = useState(null)
@@ -56,13 +55,9 @@ export default function Create() {
   }
 
   return (
-    <main className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-start justify-center mx-12 pt-32">
+    <main className="gap-4 grid grid-cols-1 sm:grid-cols-2 items-start justify-center mx-0 pt-32">
       <aside>
-        <form
-          className="flex flex-col gap-4  mb-24"
-          id="form"
-          action={createCv}
-        >
+        <form className="flex flex-col gap-4 mb-24" id="form" action={createCv}>
           <PresentacionInput />
           <TrabajosInput trabajos={trabajos} setTrabajos={setTrabajos} />
           <EstudiosInput estudios={estudios} setEstudios={setEstudios} />
@@ -88,7 +83,7 @@ export default function Create() {
           </div>
         </form>
       </aside>
-      {data ? <CvPreview data={data} /> : <Skeleton />}
+      {data ? <CvPreview data={data} /> : null}
     </main>
   )
 }
