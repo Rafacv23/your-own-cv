@@ -4,7 +4,7 @@ Proyecto creado por [Rafa Canosa](https://github.com/Rafacv23) para la Hackaton 
 
 [Live demo](https://your-own-cv.vercel.app/)
 
-![Your Own CV preview](public\readme_img.png)
+![Your Own CV preview](https://i.imgur.com/MCbH8Am.png)
 
 ```sh
 git clone https://github.com/Rafacv23/your-own-cv.git
