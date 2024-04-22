@@ -51,6 +51,6 @@ Estructura de los ficheros y archivos:
 - Zod
 - Html2Pdf
 
-## 👀 Want to learn more?
+## 👀 Participa de forma activa en el proyecto
 
 Este proyecto es completamente de código abierto. Siéntete libre de usarlo en tu día a día y de comentar fallos o posibles mejoras.
