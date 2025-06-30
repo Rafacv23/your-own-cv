@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import useCvStore from "../stores/cv"
+import type { LangKnowledge } from "../models/cvStore"
 
+const LangKnowledgeOptions: LangKnowledge[] = [
+  "Native",
+  "Fluent",
+  "Conversational",
+]
 const cvStore = useCvStore()
 
 function handleAvatarUpload(event: Event) {
@@ -94,7 +100,7 @@ function handleAvatarUpload(event: Event) {
       />
       <button
         type="button"
-        @click="cvStore.phone = ``"
+        @click="cvStore.phone = 0"
         :class="
           cvStore.phone
             ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
@@ -148,46 +154,85 @@ function handleAvatarUpload(event: Event) {
       </button>
     </label>
 
-    <label for="skills" class="flex flex-col gap-4">
-      <textarea
-        id="skills"
-        placeholder="Skills (comma-separated)"
-        rows="2"
-        v-model="cvStore.skills"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
+    <section>
+      <h3 class="text-lg font-semibold mb-2">Skills</h3>
+      <div
+        v-for="(skill, index) in cvStore.skills"
+        :key="index"
+        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+      >
+        <input
+          v-model="cvStore.skills[index]"
+          placeholder="Skill (e.g. JavaScript, Figma)"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+
+        <button
+          type="button"
+          class="text-red-500 text-sm hover:underline"
+          @click="cvStore.skills.splice(index, 1)"
+        >
+          Remove
+        </button>
+      </div>
+
       <button
         type="button"
-        @click="cvStore.skills = []"
-        :class="
-          cvStore.skills.length > 0
-            ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
+        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        @click="cvStore.skills.push('')"
       >
-        <Icon name="pajamas:clear-all" />
+        + Add Skill
       </button>
-    </label>
-    <label for="langs" class="flex flex-col gap-4">
-      <textarea
-        id="langs"
-        placeholder="Languages (comma-separated)"
-        rows="2"
-        v-model="cvStore.langs"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
+    </section>
+
+    <section>
+      <h3 class="text-lg font-semibold mb-2">Languages</h3>
+      <div
+        v-for="(lang, index) in cvStore.langs"
+        :key="index"
+        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+      >
+        <input
+          v-model="lang.lang"
+          placeholder="Job Name"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <label for="lang_knowledge" class="block">
+          <select
+            v-model="lang.knowledge"
+            class="w-full p-2 rounded bg-background text-text"
+          >
+            <option
+              v-for="option in LangKnowledgeOptions"
+              :key="option"
+              :value="option"
+            >
+              {{ option }}
+            </option>
+          </select>
+        </label>
+        <button
+          type="button"
+          class="text-red-500 text-sm hover:underline"
+          @click="cvStore.langs.splice(index, 1)"
+        >
+          Remove
+        </button>
+      </div>
+
       <button
         type="button"
-        @click="cvStore.langs = []"
-        :class="
-          cvStore.langs.length > 0
-            ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
+        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        @click="
+          cvStore.langs.push({
+            lang: '',
+            knowledge: 'Conversational',
+          })
         "
       >
-        <Icon name="pajamas:clear-all" />
+        + Add Language
       </button>
-    </label>
+    </section>
 
     <label for="avatar" class="flex gap-4">
       <input
@@ -211,24 +256,122 @@ function handleAvatarUpload(event: Event) {
       </button>
     </label>
 
-    <textarea
-      placeholder="Work Experience"
-      v-model="cvStore.works"
-      rows="4"
-      class="w-full p-3 rounded-lg bg-background text-text"
-    ></textarea>
+    <section>
+      <h3 class="text-lg font-semibold mb-2">Work Experience</h3>
+      <div
+        v-for="(work, index) in cvStore.works"
+        :key="index"
+        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+      >
+        <input
+          v-model="work.name"
+          placeholder="Job Name"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          v-model="work.company"
+          placeholder="Company"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <textarea
+          v-model="work.description"
+          placeholder="Description"
+          rows="2"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          type="date"
+          v-model="work.start_date"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          type="date"
+          v-model="work.end_date"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <button
+          type="button"
+          class="text-red-500 text-sm hover:underline"
+          @click="cvStore.works.splice(index, 1)"
+        >
+          Remove
+        </button>
+      </div>
 
-    <textarea
-      placeholder="Education"
-      v-model="cvStore.education"
-      rows="4"
-      class="w-full p-3 rounded-lg bg-background text-text"
-    ></textarea>
-    <textarea
-      placeholder="Languages"
-      v-model="cvStore.langs"
-      rows="4"
-      class="w-full p-3 rounded-lg bg-background text-text"
-    ></textarea>
+      <button
+        type="button"
+        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        @click="
+          cvStore.works.push({
+            name: '',
+            company: '',
+            description: '',
+            start_date: new Date(),
+            end_date: undefined,
+          })
+        "
+      >
+        + Add Work
+      </button>
+    </section>
+
+    <section>
+      <h3 class="text-lg font-semibold mb-2">Studies</h3>
+      <div
+        v-for="(study, index) in cvStore.education"
+        :key="index"
+        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+      >
+        <input
+          v-model="study.title"
+          placeholder="Job Name"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          v-model="study.school"
+          placeholder="Company"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <textarea
+          v-model="study.description"
+          placeholder="Description"
+          rows="2"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          type="date"
+          v-model="study.start_date"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <input
+          type="date"
+          v-model="study.end_date"
+          class="w-full p-2 rounded bg-background text-text"
+        />
+        <button
+          type="button"
+          class="text-red-500 text-sm hover:underline"
+          @click="cvStore.education.splice(index, 1)"
+        >
+          Remove
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        @click="
+          cvStore.education.push({
+            title: '',
+            school: '',
+            description: '',
+            start_date: new Date(),
+            end_date: undefined,
+          })
+        "
+      >
+        + Add Study
+      </button>
+    </section>
   </form>
 </template>

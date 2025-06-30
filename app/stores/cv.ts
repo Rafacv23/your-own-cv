@@ -27,6 +27,53 @@ const useCvStore = defineStore<"cvStore", CvStore>("cvStore", {
   }),
 
   actions: {
+    addSkill() {
+      this.skills.push("")
+    },
+
+    removeSkill(index: number) {
+      this.skills.splice(index, 1)
+    },
+
+    addWorkExperience() {
+      this.works.push({
+        name: "",
+        company: "",
+        description: "",
+        start_date: new Date(),
+        end_date: undefined,
+      })
+    },
+
+    removeWorkExperience(index: number) {
+      this.works.splice(index, 1)
+    },
+
+    addEducationExperience() {
+      this.education.push({
+        title: "",
+        school: "",
+        description: "",
+        start_date: new Date(),
+        end_date: undefined,
+      })
+    },
+
+    removeEducationExperience(index: number) {
+      this.education.splice(index, 1)
+    },
+
+    addLanguage() {
+      this.langs.push({
+        lang: "",
+        knowledge: "Conversational",
+      })
+    },
+
+    removeLanguage(index: number) {
+      this.langs.splice(index, 1)
+    },
+
     clearAll() {
       this.name = ""
       this.surname = ""
