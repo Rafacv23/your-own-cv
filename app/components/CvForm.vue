@@ -159,12 +159,12 @@ function handleAvatarUpload(event: Event) {
       <div
         v-for="(skill, index) in cvStore.skills"
         :key="index"
-        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+        class="mb-4 space-y-2"
       >
         <input
           v-model="cvStore.skills[index]"
           placeholder="Skill (e.g. JavaScript, Figma)"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
 
         <button
@@ -178,7 +178,7 @@ function handleAvatarUpload(event: Event) {
 
       <button
         type="button"
-        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        class="bg-secondary px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
         @click="cvStore.skills.push('')"
       >
         + Add Skill
@@ -261,7 +261,7 @@ function handleAvatarUpload(event: Event) {
       <div
         v-for="(work, index) in cvStore.works"
         :key="index"
-        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+        class="mb-4 space-y-4"
       >
         <input
           v-model="work.name"
@@ -271,23 +271,23 @@ function handleAvatarUpload(event: Event) {
         <input
           v-model="work.company"
           placeholder="Company"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
         <textarea
           v-model="work.description"
           placeholder="Description"
           rows="2"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
         <input
           type="date"
           v-model="work.start_date"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
         <input
           type="date"
           v-model="work.end_date"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
         <button
           type="button"
@@ -300,7 +300,7 @@ function handleAvatarUpload(event: Event) {
 
       <button
         type="button"
-        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        class="bg-secondary px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
         @click="
           cvStore.works.push({
             name: '',
@@ -320,7 +320,7 @@ function handleAvatarUpload(event: Event) {
       <div
         v-for="(study, index) in cvStore.education"
         :key="index"
-        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+        class="mb-4 space-y-4"
       >
         <input
           v-model="study.title"
