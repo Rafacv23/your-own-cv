@@ -1,22 +1,26 @@
 @import "tailwindcss";
 
 :root {
-    --color-background: #252A34;
-    --color-text: #EAEAEA;
-    --color-primary: #08D9D6;
-    --color-secondary: #FF2E63;
+  --color-background: #000001;
+  --color-text: #ffffff;
+  --color-card: #151515;
+  --color-primary: #08d9d6;
+  --color-secondary: #ff2e63;
 }
 
-@theme{
-    --color-background: var(--color-background);
-    --color-text: var(--color-text);
-    --color-primary: var(--color-primary);
-    --color-secondary: var(color-secondary);
+@theme {
+  --color-background: var(--color-background);
+  --color-text: var(--color-text);
+  --color-card: var(--color-card)
+  --color-primary: var(--color-primary);
+  --color-secondary: var(color-secondary);
 }
-
 
 /* Example usage */
 body {
-    background-color: var(--color-background);
-    color: var(--color-text);
+
+
+
+      background: radial-gradient(at 54.91379376115471% 46.541665395100914%, #000000 0px, transparent 50%), radial-gradient(at 82.28448341632712% 20.29166539510091%, #ff2e63 0px, transparent 50%), #000000;
+              color: var(--color-text);
 }
