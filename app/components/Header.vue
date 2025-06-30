@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import { GITHUB_URL } from "../utils/constants"
+</script>
+
 <template>
   <header class="flex items-center justify-center gap-4 my-4">
     <!-- Gradient Wrapper -->
@@ -20,7 +24,9 @@
         </NuxtLink>
 
         <NuxtLink
-          to="/github"
+          :to="GITHUB_URL"
+          target="_blank"
+          rel="noreferrer noopener"
           class="flex items-center gap-2 bg-transparent bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-text/50 hover:border-text text-text transition-colors duration-300"
         >
           <Icon name="uil:github" style="color: text" />
