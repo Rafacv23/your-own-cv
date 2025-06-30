@@ -11,10 +11,7 @@
       </section>
 
       <!-- Preview Section -->
-      <section
-        id="preview"
-        class="bg-background border border-zinc-700 p-6 rounded-3xl text-text"
-      >
+      <section id="preview" class="bg-background p-6 rounded-3xl text-text">
         <CvPreview />
       </section>
     </div>
