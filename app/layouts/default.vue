@@ -4,6 +4,6 @@
     <main class="py-20 md:py-40">
       <slot />
     </main>
-    <footer>esto es el footer</footer>
+    <Footer />
   </div>
 </template>
