@@ -15,6 +15,9 @@ import { GITHUB_URL } from "../utils/constants"
       <nav
         class="relative rounded-3xl px-8 flex items-center justify-between gap-8 py-4 bg-card/70 bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100"
       >
+        <NuxtLink title="Home screen" to="/">
+          <img src="/favicon-1.avif" alt="" width="40" class="rounded-full" />
+        </NuxtLink>
         <NuxtLink
           to="/example"
           class="flex items-center gap-2 bg-transparent bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-text/50 hover:border-text text-text transition-colors duration-300"

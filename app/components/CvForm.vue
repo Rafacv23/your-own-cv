@@ -190,17 +190,17 @@ function handleAvatarUpload(event: Event) {
       <div
         v-for="(lang, index) in cvStore.langs"
         :key="index"
-        class="border border-zinc-600 rounded-lg p-4 mb-4 space-y-2"
+        class="mb-4 space-y-4"
       >
         <input
           v-model="lang.lang"
           placeholder="Job Name"
-          class="w-full p-2 rounded bg-background text-text"
+          class="w-full p-2 rounded-lg bg-background text-text"
         />
         <label for="lang_knowledge" class="block">
           <select
             v-model="lang.knowledge"
-            class="w-full p-2 rounded bg-background text-text"
+            class="w-full p-2 rounded-lg bg-background text-text"
           >
             <option
               v-for="option in LangKnowledgeOptions"
@@ -222,7 +222,7 @@ function handleAvatarUpload(event: Event) {
 
       <button
         type="button"
-        class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        class="bg-secondary px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
         @click="
           cvStore.langs.push({
             lang: '',

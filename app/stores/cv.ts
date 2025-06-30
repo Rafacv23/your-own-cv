@@ -26,6 +26,8 @@ const useCvStore = defineStore<"cvStore", CvStore>("cvStore", {
     ],
   }),
 
+  // TODO: create theme state for the cvPreview so the user can change the theme before downloaded it
+
   actions: {
     addSkill() {
       this.skills.push("")
