@@ -158,7 +158,7 @@ function handleAvatarUpload(event: Event) {
       />
       <button
         type="button"
-        @click="cvStore.skills = ''"
+        @click="cvStore.skills = []"
         :class="
           cvStore.skills.length > 0
             ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
@@ -178,7 +178,7 @@ function handleAvatarUpload(event: Event) {
       />
       <button
         type="button"
-        @click="cvStore.langs = ''"
+        @click="cvStore.langs = []"
         :class="
           cvStore.langs.length > 0
             ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
