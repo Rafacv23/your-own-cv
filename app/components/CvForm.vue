@@ -20,14 +20,45 @@ function handleAvatarUpload(event: Event) {
     reader.readAsDataURL(file)
   }
 }
+
+import { computed } from "vue"
+
+const totalFields = computed(() => {
+  return (
+    Number(!!cvStore.name) +
+    Number(!!cvStore.surname) +
+    Number(!!cvStore.job_title) +
+    Number(!!cvStore.summary) +
+    Number(!!cvStore.phone) +
+    Number(!!cvStore.email) +
+    cvStore.skills.filter((s) => s.trim() !== "").length +
+    cvStore.langs.filter((l) => l.lang.trim() !== "").length +
+    cvStore.works.filter((w) => w.name && w.company && w.start_date).length +
+    cvStore.education.filter((e) => e.title && e.school && e.start_date).length
+  )
+})
+
+const maxFields = 10 // Ajusta este número según tu definición de "completo"
+
+const progress = computed(() => {
+  return Math.min(Math.round((totalFields.value / maxFields) * 100), 100)
+})
 </script>
 
 <template>
   <form class="space-y-4">
-    <header id="progression">
-      50% Completed
-      <span class="bg-secondary py-4 rounded-xl"></span>
+    <header id="progression" class="space-y-2">
+      <p class="text-sm font-semibold text-secondary">
+        {{ progress }}% Completed
+      </p>
+      <div class="w-full h-3 bg-zinc-700 rounded-full overflow-hidden">
+        <div
+          class="h-full bg-secondary transition-all duration-300"
+          :style="{ width: progress + '%' }"
+        />
+      </div>
     </header>
+
     <div id="name_section" class="grid grid-cols-2 gap-4">
       <label for="name">
         Name
@@ -415,7 +446,7 @@ function handleAvatarUpload(event: Event) {
         <button
           type="button"
           class="text-secondary flex items-center gap-2 bg-background px-4 py-2 hover:bg-secondary rounded-xl hover:text-background transition-colors duration-300 cursor-pointer"
-          @click="cvStore.works.splice(index, 1)"
+          @click="cvStore.education.splice(index, 1)"
         >
           <Icon name="pajamas:clear-all" />
           Delete
