@@ -24,135 +24,155 @@ function handleAvatarUpload(event: Event) {
 
 <template>
   <form class="space-y-4">
-    <label for="name" class="flex gap-4">
-      <input
-        type="text"
-        placeholder="Name"
-        name="name"
-        required
-        v-model="cvStore.name"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.name = ``"
-        :class="
-          cvStore.name
-            ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
-    </label>
-    <label for="surname" class="flex gap-4">
-      <input
-        type="text"
-        placeholder="Surname"
-        name="surnameme"
-        required
-        v-model="cvStore.surname"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.surname = ``"
-        :class="
-          cvStore.surname
-            ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
-    </label>
+    <header id="progression">
+      50% Completed
+      <span class="bg-secondary py-4 rounded-xl"></span>
+    </header>
+    <div id="name_section" class="grid grid-cols-2 gap-4">
+      <label for="name">
+        Name
+        <span>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            required
+            v-model="cvStore.name"
+          />
+          <button
+            type="button"
+            @click="cvStore.name = ``"
+            :class="
+              cvStore.name
+                ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+                : 'hidden'
+            "
+          >
+            <Icon name="pajamas:clear-all" />
+          </button>
+        </span>
+      </label>
+      <label for="surname" class="flex gap-4">
+        Surname
+        <span>
+          <input
+            type="text"
+            placeholder="Surname"
+            name="surname"
+            required
+            v-model="cvStore.surname"
+          />
+          <button
+            type="button"
+            @click="cvStore.surname = ``"
+            :class="
+              cvStore.surname
+                ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+                : 'hidden'
+            "
+          >
+            <Icon name="pajamas:clear-all" />
+          </button>
+        </span>
+      </label>
+    </div>
 
     <label for="job_title" class="flex gap-4">
-      <input
-        type="text"
-        placeholder="Job Title"
-        name="job_title"
-        required
-        v-model="cvStore.job_title"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.job_title = ``"
-        :class="
-          cvStore.job_title
-            ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
-    </label>
-
-    <label for="phone" class="flex gap-4">
-      <input
-        type="tel"
-        placeholder="Phone"
-        name="phone"
-        required
-        v-model="cvStore.phone"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.phone = 0"
-        :class="
-          cvStore.phone
-            ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
-    </label>
-
-    <label for="email" class="flex gap-4">
-      <input
-        type="email"
-        placeholder="example@example.com"
-        name="email"
-        required
-        v-model="cvStore.email"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.email = ``"
-        :class="
-          cvStore.email
-            ? 'bg-background text-secondary rounded-lg px-4 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
+      Job
+      <span>
+        <input
+          type="text"
+          placeholder="Job Title"
+          name="job_title"
+          required
+          v-model="cvStore.job_title"
+        />
+        <button
+          type="button"
+          @click="cvStore.job_title = ``"
+          :class="
+            cvStore.job_title
+              ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+              : 'hidden'
+          "
+        >
+          <Icon name="pajamas:clear-all" />
+        </button>
+      </span>
     </label>
 
     <label for="summary" class="flex flex-col gap-4">
-      <textarea
-        placeholder="Summary"
-        name="summary"
-        v-model="cvStore.summary"
-        rows="4"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.summary = ``"
-        :class="
-          cvStore.summary
-            ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
+      Summary
+      <span>
+        <textarea
+          placeholder="Summary"
+          name="summary"
+          v-model="cvStore.summary"
+          rows="4"
+        />
+        <button
+          type="button"
+          @click="cvStore.summary = ``"
+          :class="
+            cvStore.summary
+              ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+              : 'hidden'
+          "
+        >
+          <Icon name="pajamas:clear-all" />
+        </button>
+      </span>
     </label>
+
+    <div id="contact_section" class="grid grid-cols-2 gap-4">
+      <label for="phone" class="flex gap-4">
+        Phone
+        <span>
+          <input
+            type="tel"
+            placeholder="Phone"
+            name="phone"
+            required
+            v-model="cvStore.phone"
+          />
+          <button
+            type="button"
+            @click="cvStore.phone = 0"
+            :class="
+              cvStore.phone
+                ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+                : 'hidden'
+            "
+          >
+            <Icon name="pajamas:clear-all" />
+          </button>
+        </span>
+      </label>
+
+      <label for="email" class="flex gap-4">
+        Email
+        <span>
+          <input
+            type="email"
+            placeholder="example@example.com"
+            name="email"
+            required
+            v-model="cvStore.email"
+          />
+          <button
+            type="button"
+            @click="cvStore.email = ``"
+            :class="
+              cvStore.email
+                ? 'text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer'
+                : 'hidden'
+            "
+          >
+            <Icon name="pajamas:clear-all" />
+          </button>
+        </span>
+      </label>
+    </div>
 
     <section>
       <h3 class="text-lg font-semibold mb-2">Skills</h3>
@@ -161,24 +181,29 @@ function handleAvatarUpload(event: Event) {
         :key="index"
         class="mb-4 space-y-2"
       >
-        <input
-          v-model="cvStore.skills[index]"
-          placeholder="Skill (e.g. JavaScript, Figma)"
-          class="w-full p-2 rounded-lg bg-background text-text"
-        />
+        <label for="skill">
+          <span>
+            <input
+              v-model="cvStore.skills[index]"
+              name="skill"
+              placeholder="Skill (e.g. JavaScript, Figma)"
+              class="w-full p-2 rounded-lg bg-background text-text"
+            />
 
-        <button
-          type="button"
-          class="text-red-500 text-sm hover:underline"
-          @click="cvStore.skills.splice(index, 1)"
-        >
-          Remove
-        </button>
+            <button
+              type="button"
+              class="text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer"
+              @click="cvStore.skills.splice(index, 1)"
+            >
+              <Icon name="pajamas:clear-all" />
+            </button>
+          </span>
+        </label>
       </div>
 
       <button
         type="button"
-        class="bg-secondary px-4 py-2 rounded-lg hover:bg-secondary/80 transition"
+        class="bg-secondary px-4 py-2 rounded-lg hover:bg-secondary/80 transition cursor-pointer"
         @click="cvStore.skills.push('')"
       >
         + Add Skill
@@ -192,32 +217,36 @@ function handleAvatarUpload(event: Event) {
         :key="index"
         class="mb-4 space-y-4"
       >
-        <input
-          v-model="lang.lang"
-          placeholder="Job Name"
-          class="w-full p-2 rounded-lg bg-background text-text"
-        />
-        <label for="lang_knowledge" class="block">
-          <select
-            v-model="lang.knowledge"
-            class="w-full p-2 rounded-lg bg-background text-text"
-          >
-            <option
-              v-for="option in LangKnowledgeOptions"
-              :key="option"
-              :value="option"
+        <label for="languages">
+          <span>
+            <input
+              v-model="lang.lang"
+              placeholder="English, Spanish, etc"
+              class="w-full p-2 rounded-lg bg-background text-text"
+            />
+            <label for="lang_knowledge">
+              <select
+                v-model="lang.knowledge"
+                class="rounded-lg bg-background text-text p-2 mr-4"
+              >
+                <option
+                  v-for="option in LangKnowledgeOptions"
+                  :key="option"
+                  :value="option"
+                >
+                  {{ option }}
+                </option>
+              </select>
+            </label>
+            <button
+              type="button"
+              class="text-secondary px-4 hover:bg-secondary rounded-r-xl hover:text-background transition-colors duration-300 cursor-pointer"
+              @click="cvStore.langs.splice(index, 1)"
             >
-              {{ option }}
-            </option>
-          </select>
+              <Icon name="pajamas:clear-all" />
+            </button>
+          </span>
         </label>
-        <button
-          type="button"
-          class="text-red-500 text-sm hover:underline"
-          @click="cvStore.langs.splice(index, 1)"
-        >
-          Remove
-        </button>
       </div>
 
       <button
@@ -234,26 +263,27 @@ function handleAvatarUpload(event: Event) {
       </button>
     </section>
 
-    <label for="avatar" class="flex gap-4">
-      <input
-        type="file"
-        name="avatar"
-        id="avatar"
-        @change="handleAvatarUpload"
-        accept="image/"
-        class="w-full p-3 rounded-lg bg-background text-text"
-      />
-      <button
-        type="button"
-        @click="cvStore.avatar = ``"
-        :class="
-          cvStore.avatar
-            ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
-            : 'hidden'
-        "
-      >
-        <Icon name="pajamas:clear-all" />
-      </button>
+    <label for="avatar">
+      <span>
+        <input
+          type="file"
+          name="avatar"
+          id="avatar"
+          @change="handleAvatarUpload"
+          accept="image/"
+        />
+        <button
+          type="button"
+          @click="cvStore.avatar = ``"
+          :class="
+            cvStore.avatar
+              ? 'bg-background text-secondary rounded-lg px-4 py-2 hover:bg-secondary hover:text-background transition-colors duration-300 cursor-pointer'
+              : 'hidden'
+          "
+        >
+          <Icon name="pajamas:clear-all" />
+        </button>
+      </span>
     </label>
 
     <section>
@@ -263,38 +293,56 @@ function handleAvatarUpload(event: Event) {
         :key="index"
         class="mb-4 space-y-4"
       >
-        <input
-          v-model="work.name"
-          placeholder="Job Name"
-          class="w-full p-2 rounded bg-background text-text"
-        />
-        <input
-          v-model="work.company"
-          placeholder="Company"
-          class="w-full p-2 rounded-lg bg-background text-text"
-        />
+        <div class="grid grid-cols-2 gap-4">
+          <label for="job">
+            Job
+            <input
+              v-model="work.name"
+              placeholder="Job Name"
+              class="w-full p-2 rounded bg-background text-text"
+            />
+          </label>
+          <label for="company">
+            Company
+            <input
+              v-model="work.company"
+              placeholder="Company"
+              class="w-full p-2 rounded-lg bg-background text-text"
+            />
+          </label>
+        </div>
         <textarea
           v-model="work.description"
           placeholder="Description"
           rows="2"
           class="w-full p-2 rounded-lg bg-background text-text"
         />
-        <input
-          type="date"
-          v-model="work.start_date"
-          class="w-full p-2 rounded-lg bg-background text-text"
-        />
-        <input
-          type="date"
-          v-model="work.end_date"
-          class="w-full p-2 rounded-lg bg-background text-text"
-        />
+        <div class="grid grid-cols-2 gap-4">
+          <label for="start_date">
+            Start date
+            <input
+              type="date"
+              v-model="work.start_date"
+              min="1950-01-01"
+              class="w-full p-2 rounded-lg bg-background text-text placeholder:text-gray-500 focus:border-secondary"
+            />
+          </label>
+          <label for="end_date">
+            End date
+            <input
+              type="date"
+              v-model="work.end_date"
+              class="w-full p-2 rounded-lg bg-background text-text"
+            />
+          </label>
+        </div>
         <button
           type="button"
-          class="text-red-500 text-sm hover:underline"
+          class="text-secondary flex items-center gap-2 bg-background px-4 py-2 hover:bg-secondary rounded-xl hover:text-background transition-colors duration-300 cursor-pointer"
           @click="cvStore.works.splice(index, 1)"
         >
-          Remove
+          <Icon name="pajamas:clear-all" />
+          Delete
         </button>
       </div>
 
@@ -322,38 +370,55 @@ function handleAvatarUpload(event: Event) {
         :key="index"
         class="mb-4 space-y-4"
       >
-        <input
-          v-model="study.title"
-          placeholder="Job Name"
-          class="w-full p-2 rounded bg-background text-text"
-        />
-        <input
-          v-model="study.school"
-          placeholder="Company"
-          class="w-full p-2 rounded bg-background text-text"
-        />
+        <div class="grid grid-cols-2 gap-4">
+          <label for="study">
+            Title
+            <input
+              v-model="study.title"
+              placeholder="Title"
+              class="w-full p-2 rounded bg-background text-text"
+            />
+          </label>
+          <label for="school">
+            School
+            <input
+              v-model="study.school"
+              placeholder="School"
+              class="w-full p-2 rounded bg-background text-text"
+            />
+          </label>
+        </div>
         <textarea
           v-model="study.description"
           placeholder="Description"
           rows="2"
           class="w-full p-2 rounded bg-background text-text"
         />
-        <input
-          type="date"
-          v-model="study.start_date"
-          class="w-full p-2 rounded bg-background text-text"
-        />
-        <input
-          type="date"
-          v-model="study.end_date"
-          class="w-full p-2 rounded bg-background text-text"
-        />
+        <div class="grid grid-cols-2 gap-4">
+          <label for="start_date">
+            Start date
+            <input
+              type="date"
+              v-model="study.start_date"
+              class="w-full p-2 rounded bg-background text-text"
+            />
+          </label>
+          <label for="end_date">
+            End date
+            <input
+              type="date"
+              v-model="study.end_date"
+              class="w-full p-2 rounded bg-background text-text"
+            />
+          </label>
+        </div>
         <button
           type="button"
-          class="text-red-500 text-sm hover:underline"
-          @click="cvStore.education.splice(index, 1)"
+          class="text-secondary flex items-center gap-2 bg-background px-4 py-2 hover:bg-secondary rounded-xl hover:text-background transition-colors duration-300 cursor-pointer"
+          @click="cvStore.works.splice(index, 1)"
         >
-          Remove
+          <Icon name="pajamas:clear-all" />
+          Delete
         </button>
       </div>
 
@@ -375,3 +440,68 @@ function handleAvatarUpload(event: Event) {
     </section>
   </form>
 </template>
+
+<style scoped>
+label {
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+label > span {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  display: flex;
+  border-radius: 0.75rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+}
+
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease;
+
+  /* Optional: Custom font & placeholder alignment */
+  font-family: inherit;
+  text-align: left;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  background-color: var(--color-background);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* or any color styling */
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+}
+</style>

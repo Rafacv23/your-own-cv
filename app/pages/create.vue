@@ -1,17 +1,19 @@
 <template>
   <div>
     <header>
-      <h1 class="text-2xl font-bold mb-8 text-center">Create Your CV</h1>
+      <h1 class="text-2xl font-bold mb-8 text-center sr-only">
+        Create Your CV
+      </h1>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-card p-8 rounded-xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
       <!-- Form Section -->
-      <section id="form" class="space-y-6">
+      <section id="form" class="space-y-6 bg-card rounded-xl p-4">
         <CvForm />
       </section>
 
       <!-- Preview Section -->
-      <section id="preview" class="bg-background p-6 rounded-3xl text-text">
+      <section id="preview" class="space-y-6 bg-card rounded-xl p-4 h-fit">
         <CvPreview />
       </section>
     </div>
