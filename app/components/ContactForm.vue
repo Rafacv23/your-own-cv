@@ -24,7 +24,7 @@ function handleAvatarUpload(event: Event) {
 </script>
 
 <template>
-  <div>
+  <div class="grid grid-cols-1 gap-4">
     <div id="contact_section" class="grid grid-cols-2 gap-4">
       <label for="phone" class="flex gap-4">
         Phone
@@ -165,6 +165,7 @@ function handleAvatarUpload(event: Event) {
     </section>
 
     <label for="avatar">
+      Image about you
       <span>
         <input
           type="file"
