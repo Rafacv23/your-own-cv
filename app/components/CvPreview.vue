@@ -1,7 +1,32 @@
 <script lang="ts" setup>
 import useCvStore from "../stores/cv"
+import { format } from "date-fns"
+import { ref } from "vue"
+const pdfContent = ref<HTMLElement | null>(null)
 
 const cvStore = useCvStore()
+
+const downloadPdf = async () => {
+  if (!process.client || !pdfContent.value) return
+
+  const html2pdf = (await import("html2pdf.js")).default
+
+  html2pdf()
+    .set({
+      margin: 0,
+      filename: `${cvStore.name || "cv"}-resume.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
+    })
+    .from(pdfContent.value)
+    .save()
+}
+
+const formatDate = (date: string | Date) => {
+  if (!date) return ""
+  return format(new Date(date), "MMM yyyy") // e.g., "Jun 2025"
+}
 </script>
 
 <template>
@@ -9,6 +34,7 @@ const cvStore = useCvStore()
     <header class="flex items-center justify-end mb-4">
       <nav class="space-x-4 flex items-center">
         <button
+          @click="downloadPdf"
           class="flex cursor-pointer items-center gap-2 bg-secondary px-4 py-2 rounded-xl border border-transparent hover:bg-secondary/60 text-text transition-colors duration-300"
         >
           <Icon name="material-symbols:download" />
@@ -22,14 +48,16 @@ const cvStore = useCvStore()
         </button>
       </nav>
     </header>
-    <article class="grid grid-cols-1 gap-16 bg-background p-8 rounded-xl">
+    <article
+      ref="pdfContent"
+      class="grid grid-cols-1 gap-16 bg-background p-8 rounded-xl"
+    >
       <header class="flex items-center flex-col gap-4">
         <img
           v-if="cvStore.avatar"
           :src="cvStore.avatar"
           :alt="cvStore.name"
-          width="120"
-          class="object-cover rounded-full border mb-8 border-secondary"
+          class="object-cover rounded-full mb-4 w-30 h-30"
         />
         <h3 class="text-4xl font-bold text-secondary">
           {{ cvStore.name }} {{ cvStore.surname }}
@@ -47,12 +75,19 @@ const cvStore = useCvStore()
           <li
             v-for="work of cvStore.works"
             :key="work.company"
-            class="bg-card p-4 rounded-3xl"
+            class="bg-card p-8 rounded-3xl grid grid-cols-1 gap-4"
           >
-            <h5>{{ work.name }}</h5>
-            <h6>{{ work.company }}</h6>
+            <span class="flex items-end gap-2">
+              <h5 class="font-bold text-xl">{{ work.name }}</h5>
+              at
+              <h6>{{ work.company }}</h6>
+            </span>
             <p>{{ work.description }}</p>
-            <p>{{ work.start_date }} | {{ work.end_date }}</p>
+
+            <p class="text-text/60 text-sm">
+              From {{ formatDate(work.start_date) }} until
+              {{ formatDate(work.end_date) }}
+            </p>
           </li>
         </ul>
       </div>
@@ -65,33 +100,44 @@ const cvStore = useCvStore()
           <li
             v-for="study of cvStore.education"
             :key="study.title"
-            class="bg-card p-4 rounded-3xl"
+            class="bg-card p-8 rounded-3xl grid grid-cols-1 gap-4"
           >
-            <h5>{{ study.title }}</h5>
-            <h6>{{ study.school }}</h6>
+            <span class="flex items-end gap-2">
+              <h5 class="font-bold text-xl">{{ study.title }}</h5>
+              at
+              <h6>{{ study.school }}</h6>
+            </span>
             <p>{{ study.description }}</p>
-            <p>{{ study.start_date }} | {{ study.end_date }}</p>
+            <p class="text-text/60 text-sm">
+              From {{ formatDate(study.start_date) }} until
+              {{ formatDate(study.end_date) }}
+            </p>
           </li>
         </ul>
       </div>
-      <h5 class="text-xl font-semibold">Contact</h5>
-      <div class="bg-secondary p-4 rounded-3xl flex flex-col gap-4">
-        <div class="mb-8">
-          <p>Phone {{ cvStore.phone }}</p>
-          <p>Email {{ cvStore.email }}</p>
+      <div class="bg-secondary p-4 rounded-xl flex flex-col gap-4">
+        <h5 class="text-xl font-semibold text-background">Contact</h5>
+        <div>
+          <p class="flex items-center gap-2 text-background">
+            <Icon name="material-symbols:phone-android-outline" />
+            {{ cvStore.phone }}
+          </p>
+          <p class="flex items-center gap-2 text-background">
+            <Icon name="material-symbols:alternate-email" /> {{ cvStore.email }}
+          </p>
         </div>
         <div
           id="languages"
           :class="cvStore.langs.length > 0 ? 'flex flex-col gap-4' : 'hidden'"
         >
-          <h5 class="text-background font-semibold mb-4">Languages</h5>
+          <h5 class="text-background font-semibold">Languages</h5>
           <ul class="flex flex-wrap gap-2">
             <li
               v-for="(lang, index) of cvStore.langs"
               :key="index"
-              class="bg-card px-4 py-2 rounded-3xl"
+              class="bg-card px-4 py-2 rounded-xl"
             >
-              {{ lang.lang }} {{ lang.knowledge }}
+              {{ lang.lang }}
             </li>
           </ul>
         </div>
@@ -99,12 +145,12 @@ const cvStore = useCvStore()
           id="skills"
           :class="cvStore.skills.length > 0 ? 'flex flex-col gap-4' : 'hidden'"
         >
-          <h5 class="text-background font-semibold mb-4">Skills</h5>
+          <h5 class="text-background font-semibold">Skills</h5>
           <ul class="flex flex-wrap gap-2">
             <li
               v-for="(skill, index) of cvStore.skills"
               :key="index"
-              class="bg-card px-4 py-2 rounded-3xl"
+              class="bg-card px-4 py-2 rounded-xl"
             >
               {{ skill }}
             </li>
