@@ -22,7 +22,7 @@ import { GITHUB_URL } from "../utils/constants"
         <div class="flex items-center gap-4">
           <NuxtLink
             to="/example"
-            class="flex items-center gap-2 bg-transparent bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-text/50 hover:border-text text-text transition-colors duration-300"
+            class="flex items-center gap-2 bg-transparent px-4 py-2 rounded-xl border border-transparent hover:bg-card text-text transition-colors duration-300"
           >
             <Icon name="hugeicons:test-tube-03" style="color: text" />
             Example
@@ -32,7 +32,7 @@ import { GITHUB_URL } from "../utils/constants"
             :to="GITHUB_URL"
             target="_blank"
             rel="noreferrer noopener"
-            class="flex items-center gap-2 bg-transparent bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-text/50 hover:border-text text-text transition-colors duration-300"
+            class="flex items-center gap-2 bg-transparent px-4 py-2 rounded-xl border border-transparent hover:bg-card text-text transition-colors duration-300"
           >
             <Icon name="uil:github" style="color: text" />
             Github
@@ -41,7 +41,7 @@ import { GITHUB_URL } from "../utils/constants"
 
         <NuxtLink
           to="/create"
-          class="flex items-center gap-2 bg-secondary text-text bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-xl border border-secondary/50 hover:border-secondary/70 hover:bg-secondary/30 transition-colors duration-300"
+          class="flex items-center gap-2 bg-secondary px-4 py-2 rounded-xl border border-transparent hover:bg-secondary/60 text-text transition-colors duration-300"
         >
           <Icon name="material-symbols:add-circle" style="color: dark" />
           Create

@@ -6,11 +6,23 @@ const cvStore = useCvStore()
 
 <template>
   <div>
-    <header>
-      <h2 class="text-xl font-semibold mb-2">Preview</h2>
-      <p class="text-zinc-400">yourowncv.pdf</p>
+    <header class="flex items-center justify-end mb-4">
+      <nav class="space-x-4 flex items-center">
+        <button
+          class="flex cursor-pointer items-center gap-2 bg-secondary px-4 py-2 rounded-xl border border-transparent hover:bg-secondary/60 text-text transition-colors duration-300"
+        >
+          <Icon name="material-symbols:download" />
+          Download
+        </button>
+        <button
+          class="flex cursor-pointer items-center gap-2 bg-transparent px-4 py-2 rounded-xl border border-secondary hover:bg-secondary text-text transition-colors duration-300"
+        >
+          <Icon name="iconoir:magic-wand" />
+          Generate Card
+        </button>
+      </nav>
     </header>
-    <article class="grid grid-cols-1 gap-16">
+    <article class="grid grid-cols-1 gap-16 bg-background p-8 rounded-xl">
       <header class="flex items-center flex-col gap-4">
         <img
           v-if="cvStore.avatar"

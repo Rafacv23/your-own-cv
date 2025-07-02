@@ -5,7 +5,7 @@ import { GITHUB_URL } from "../utils/constants"
 <template>
   <div class="flex flex-col items-center">
     <span
-      class="bg-card border border-text/30 px-4 py-2 rounded-3xl flex items-center gap-2"
+      class="bg-card border border-transparent px-4 py-2 rounded-3xl flex items-center gap-2"
     >
       <Icon name="material-symbols:lightbulb" /> Generate Your CVs in seconds
     </span>
@@ -18,7 +18,7 @@ import { GITHUB_URL } from "../utils/constants"
     <footer class="mt-8 flex items-center gap-4">
       <NuxtLink
         to="/create"
-        class="flex items-center gap-2 bg-secondary text-text bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-secondary/50 hover:border-secondary/70 hover:bg-secondary/30 transition-colors duration-300"
+        class="flex cursor-pointer items-center gap-2 bg-secondary px-4 py-2 rounded-xl border border-transparent hover:bg-secondary/60 text-text transition-colors duration-300"
       >
         <Icon name="material-symbols:add-circle" style="color: dark" />
 
@@ -28,7 +28,7 @@ import { GITHUB_URL } from "../utils/constants"
         :to="GITHUB_URL"
         target="_blank"
         rel="noreferrer noopener"
-        class="flex items-center gap-2 bg-transparent bg-clip-padding backdrop-filter backdrop-blur backdrop-saturate-100 backdrop-contrast-100 px-4 py-2 rounded-3xl border border-text/50 hover:border-text text-text transition-colors duration-300"
+        class="flex cursor-pointer items-center gap-2 bg-transparent px-4 py-2 rounded-xl border border-secondary hover:bg-secondary text-text transition-colors duration-300"
       >
         <Icon name="uil:github" style="color: text" />
 
