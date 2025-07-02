@@ -9,9 +9,7 @@ import { GITHUB_URL } from "../utils/constants"
     <!-- Gradient Wrapper -->
     <div class="relative">
       <!-- Gradient Shadow Background -->
-      <div
-        class="absolute -inset-2 rounded-3xl bg-gradient-to-tl from-card via-secondary/60 to-secondary opacity-90 blur-2xl"
-      ></div>
+      <div class="absolute -inset-2 rounded-3xl opacity-90 blur-2xl"></div>
 
       <!-- Navigation with backdrop blur -->
       <nav
